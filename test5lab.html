@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<style>
+			#sec1{
+				position: absolute;
+				width: 100px;
+				height: 50px;
+				background-color: yellow;
+			}
+		</style>
+		<script>
+			i = 1;
+			function f() {
+				el = document.getElementById("sec1");
+				el.style.left= i++;
+				setTimeout(f, 1);
+			}
+		</script>
+	</head>
+	<body onload="f()">
+		<div id="sec1">
+		</div>
+	</body>
+</html>

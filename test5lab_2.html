@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<style>
+			body{background-color: #3a411a; margin: 0;overflow-x: hidden;}
+			button{
+				padding: 10px 50px;
+				font-size: 1.5em;
+				top: 55%;
+				left: 40%;
+				position: absolute;
+			}
+			#container{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				top:30%;
+				border-radius: 50%;
+				background: conic-gradient(#05c5ff 25%, #f0d851 0 50%, #ea142c 0 75%, #ffffff 0);
+				animation: rotate_it 1s linear infinite;
+			}
+			@keyframes rotate_it {
+				from {transform: rotate(0deg);}
+				to {transform: rotate(360deg);}
+			}
+		</style>
+		<script>
+			function move(){
+				el = document.getElementById("container");
+				elementWidth = el.offsetWidth; //element width
+				clientWidth = document.body.clientWidth; //width of client area(browser)
+				pos = 0; //left boundary
+				
+				myInterval = setInterval(f, 1);
+				function f() {
+					if( pos == (clientWidth - elementWidth)){
+						clearInterval(myInterval);
+						moveReverse();
+					}else {
+						pos++;
+						el.style.left = pos + "px";
+						el.style.animationDirection = "normal";
+					}
+				}
+			}
+			
+			function moveReverse(){
+				el = document.getElementById("container");
+				elementWidth = el.offsetWidth; //element width
+				clientWidth = document.body.clientWidth; //width of client area(browser)
+				pos = clientWidth - elementWidth; //right boundary
+				
+				myInterval = setInterval(f, 1);
+				function f() {
+					if( pos == 0 ){
+						clearInterval(myInterval);
+						move();
+					}else {
+						pos--;
+						el.style.left = pos + "px";
+						el.style.animationDirection = "reverse";
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="container"></div>
+		<button onclick="move()">Click</button>
+	</body>
+</html>

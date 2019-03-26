@@ -1,0 +1,49 @@
+<html>
+<head>
+  <title>5lab</title>
+  <style>
+		body {margin: 0;background-color: black;}
+		.container{width: 50%; height: 90%; left: 25%;top:5%;position: absolute;}
+		#circle{
+			width:50px;
+			height: 50px;
+			border-radius: 50%;
+			background: red;
+			position: absolute;
+			top: 300px;
+			left: 50%;
+		}
+	</style>
+	<script>
+		let currTime = Date.now();
+ 
+		function draw(t){
+			let circle = document.getElementById("circle");
+			let r = 200,
+			left = '',
+			top = '',
+			alpha = 8 * 3.14;
+			
+			//left = 150 + r * Math.cos(alpha*t);
+			//top = 150 + r * Math.sin(-alpha*t);
+			
+			left = 150+r*(1-Math.sin(alpha*t))*Math.cos(alpha*t);
+			top = 150+r*(1-Math.sin(alpha*t))*Math.sin(-alpha*t);
+			
+			circle.style.left = left;
+			circle.style.top = top;
+		}
+		
+		startTime = setInterval(function(){
+			t = Date.now() - currTime;
+			draw(t);
+		},1);
+		
+	</script>
+</head>
+<body onload="draw()">
+	<div class="container">
+		<div id="circle"></div>
+	</div>
+</body>
+</html>
